@@ -10,12 +10,13 @@ import SwiftUI
 @main
 struct PalmKeyboardApp: App {
     var body: some Scene {
+        let textViewModel = TextViewModel()
         WindowGroup {
-            ContentView()
+            ContentView(textViewModel: textViewModel)
         }
 
         ImmersiveSpace(id: "ImmersiveSpace") {
-            ImmersiveView()
+            ImmersiveView(textViewModel: textViewModel)
         }
         .upperLimbVisibility(.hidden)
     }

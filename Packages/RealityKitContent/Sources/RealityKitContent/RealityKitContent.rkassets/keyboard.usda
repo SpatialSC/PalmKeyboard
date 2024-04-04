@@ -12,7 +12,7 @@ reorder rootPrims = ["Root", "Cylinder"]
 
 def Xform "Root"
 {
-    reorder nameChildren = ["keyShift", "Keyboard", "keyQ", "keyA", "keyS", "keyD", "keyF", "keyG", "keyH", "keyJ", "keyK", "keyL", "keyZ", "keyX", "keyDelete", "keyC", "keyV", "keyB", "keyN", "keyM", "keyW", "keyE", "keyR", "keyT", "keyY", "keyU", "keyI", "keyO", "keyP"]
+    reorder nameChildren = ["keyShift", "Keyboard", "keyQ", "keyA", "keyS", "keyD", "keyF", "keyG", "keyH", "keyJ", "keyK", "keyL", "keyZ", "keyX", "keyDelete", "keySpace", "keyReturn", "keyPlaceHolder", "keyC", "keyV", "keyB", "keyN", "keyM", "keyW", "keyE", "keyR", "keyT", "keyY", "keyU", "keyI", "keyO", "keyP"]
     def Cube "keyO" (
         active = true
         prepend apiSchemas = ["MaterialBindingAPI"]
@@ -1363,30 +1363,30 @@ def Xform "Root"
         }
     }
 
-    def Cylinder "keyDelete_1" (
+    def Cylinder "keySpace" (
         active = true
         prepend apiSchemas = ["MaterialBindingAPI"]
     )
     {
         uniform token axis = "Y"
         double height = 0.2
-        rel material:binding = </Root/keyDelete_1/DefaultMaterial>
+        rel material:binding = </Root/keySpace/DefaultMaterial>
         double radius = 0.1
         quatf xformOp:orient = (1, 0, 0, 0)
         float3 xformOp:scale = (0.5, 0.01, 0.08)
-        float3 xformOp:translate = (0.0021894872, 0.00878, 0.019)
+        float3 xformOp:translate = (0, 0.00878, 0.019)
         uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
 
         def Material "DefaultMaterial"
         {
             token outputs:mtlx:surface
             token outputs:realitykit:vertex
-            token outputs:surface.connect = </Root/keyDelete_1/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+            token outputs:surface.connect = </Root/keySpace/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
 
             def Shader "DefaultSurfaceShader"
             {
                 uniform token info:id = "UsdPreviewSurface"
-                color3f inputs:diffuseColor = (1, 0.34599826, 0.20466758) (
+                color3f inputs:diffuseColor = (1, 0.9478669, 0.40333745) (
                     colorSpace = "srgb_displayp3"
                 )
                 float inputs:roughness = 0.75
@@ -1401,6 +1401,96 @@ def Xform "Root"
 
         def RealityKitComponent "GroundingShadow"
         {
+            bool enableIBLShadow = 1
+            bool enableMeshShadow = 1
+            uniform token info:id = "RealityKit.GroundingShadow"
+        }
+    }
+
+    def Cylinder "keyReturn" (
+        active = true
+        prepend apiSchemas = ["MaterialBindingAPI"]
+    )
+    {
+        uniform token axis = "Y"
+        double height = 0.2
+        rel material:binding = </Root/keyReturn/DefaultMaterial>
+        double radius = 0.1
+        quatf xformOp:orient = (1, 0, 0, 0)
+        float3 xformOp:scale = (0.15, 0.01, 0.08)
+        float3 xformOp:translate = (0.06900331, 0.00878006, 0.019)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        def Material "DefaultMaterial"
+        {
+            token outputs:mtlx:surface
+            token outputs:realitykit:vertex
+            token outputs:surface.connect = </Root/keyReturn/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+
+            def Shader "DefaultSurfaceShader"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0.3175432, 0.52774644, 1) (
+                    colorSpace = "srgb_displayp3"
+                )
+                float inputs:roughness = 0.75
+                token outputs:surface
+            }
+        }
+
+        def RealityKitComponent "HierarchicalFade"
+        {
+            uniform token info:id = "RealityKit.HierarchicalFade"
+        }
+
+        def RealityKitComponent "GroundingShadow"
+        {
+            bool enableIBLShadow = 1
+            bool enableMeshShadow = 1
+            uniform token info:id = "RealityKit.GroundingShadow"
+        }
+    }
+
+    def Cylinder "keyPlaceHolder" (
+        active = true
+        prepend apiSchemas = ["MaterialBindingAPI"]
+    )
+    {
+        uniform token axis = "Y"
+        double height = 0.2
+        rel material:binding = </Root/keyPlaceHolder/DefaultMaterial>
+        double radius = 0.1
+        quatf xformOp:orient = (1, 0, 0, 0)
+        float3 xformOp:scale = (0.15, 0.01, 0.08)
+        float3 xformOp:translate = (-0.06912674, 0.00878006, 0.019)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        def Material "DefaultMaterial"
+        {
+            token outputs:mtlx:surface
+            token outputs:realitykit:vertex
+            token outputs:surface.connect = </Root/keyPlaceHolder/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+
+            def Shader "DefaultSurfaceShader"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0.3175432, 0.52774644, 1) (
+                    colorSpace = "srgb_displayp3"
+                )
+                float inputs:roughness = 0.75
+                token outputs:surface
+            }
+        }
+
+        def RealityKitComponent "HierarchicalFade"
+        {
+            uniform token info:id = "RealityKit.HierarchicalFade"
+        }
+
+        def RealityKitComponent "GroundingShadow"
+        {
+            bool enableIBLShadow = 1
+            bool enableMeshShadow = 1
             uniform token info:id = "RealityKit.GroundingShadow"
         }
     }

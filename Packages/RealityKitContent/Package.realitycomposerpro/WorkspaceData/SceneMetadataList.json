@@ -69,7 +69,7 @@
       [
         "AF09ED6F-1707-48FD-8720-65B998362C09",
         "Root",
-        "Sphere_Right"
+        "Sphere_Left"
       ],
       {
         "isExpanded" : true,
@@ -78,7 +78,7 @@
       [
         "AF09ED6F-1707-48FD-8720-65B998362C09",
         "Root",
-        "Sphere_Left"
+        "Sphere_Right"
       ],
       {
         "isExpanded" : true,
@@ -88,6 +88,24 @@
   },
   "C0B86B07-163D-4D03-A05A-B46594C68868" : {
     "objectMetadataList" : [
+      [
+        "C0B86B07-163D-4D03-A05A-B46594C68868",
+        "Root",
+        "keyReturn"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "C0B86B07-163D-4D03-A05A-B46594C68868",
+        "Root",
+        "keySpace"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
       [
         "C0B86B07-163D-4D03-A05A-B46594C68868",
         "Root",

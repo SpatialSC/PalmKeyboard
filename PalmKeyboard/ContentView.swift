@@ -13,6 +13,8 @@ struct ContentView: View {
 
     @State private var showImmersiveSpace = false
     @State private var immersiveSpaceIsShown = false
+    
+    var textViewModel: TextViewModel
 
     @Environment(\.openImmersiveSpace) var openImmersiveSpace
     @Environment(\.dismissImmersiveSpace) var dismissImmersiveSpace
@@ -22,7 +24,7 @@ struct ContentView: View {
             Model3D(named: "Scene", bundle: realityKitContentBundle)
                 .padding(.bottom, 50)
 
-            Text("Hello, world!")
+            Text(textViewModel.text.isEmpty ? textViewModel.placeholder : textViewModel.text)
 
  
         }
@@ -37,5 +39,6 @@ struct ContentView: View {
 }
 
 #Preview(windowStyle: .automatic) {
-    ContentView()
+    let textViewModel = TextViewModel()
+    ContentView(textViewModel: textViewModel)
 }
