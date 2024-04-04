@@ -26,14 +26,20 @@ struct ImmersiveView: View {
                 
                 keyboard.transform.rotation = simd_quatf(angle: -Float.pi / 2, axis: SIMD3(x: 0, y: 1, z: 0))
                 
-                keyboard.transform.translation.y += 0.1
+                keyboard.transform.translation.y += 0.07
                 handAnchor.name = "Keyboard Palm Anchor"
                 
                 if let keyboardRoot = keyboard.findEntity(named: "Root")?.children[0] {
                     keyboardRoot.children.forEach{ child in
                         if child.name != "Keyboard" {
                             child.components.set(InputTargetComponent())
-                            child.generateCollisionShapes(recursive: false)
+                            child.generateCollisionShapes(recursive: true)
+                            if !child.children.isEmpty {
+                                child.children.forEach { cChild in
+                                    cChild.name = child.name
+                                }
+                            }
+                            print(child)
                         }
                     }
                 }
@@ -50,6 +56,7 @@ struct ImmersiveView: View {
                 finger.transform.rotation = simd_quatf(angle: Float.pi / 2, axis: SIMD3(x: 0, y: 0, z: 1))
                 // finger.orientation += simd_quatf(angle: Float.pi / 2, axis: SIMD3(x: 0, y: 1, z: 0))
                 
+                finger.transform.translation.x += 0.01
                 finger.scale *= 0.2
                 indexFingerAnchor.name = "Swiping Finger Anchor"
             }
@@ -59,8 +66,6 @@ struct ImmersiveView: View {
             let entity = value.entity
             
             let name = entity.name
-            print(entity)
-            print(name)
             var text: String = keyPressed(key: name)
             
             if !text.isEmpty {

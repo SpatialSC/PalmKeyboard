@@ -90,43 +90,7 @@
     "objectMetadataList" : [
       [
         "C0B86B07-163D-4D03-A05A-B46594C68868",
-        "Root",
-        "keyReturn"
-      ],
-      {
-        "isExpanded" : true,
-        "isLocked" : false
-      },
-      [
-        "C0B86B07-163D-4D03-A05A-B46594C68868",
-        "Root",
-        "keySpace"
-      ],
-      {
-        "isExpanded" : true,
-        "isLocked" : false
-      },
-      [
-        "C0B86B07-163D-4D03-A05A-B46594C68868",
-        "Root",
-        "keyDelete"
-      ],
-      {
-        "isExpanded" : true,
-        "isLocked" : false
-      },
-      [
-        "C0B86B07-163D-4D03-A05A-B46594C68868",
         "Root"
-      ],
-      {
-        "isExpanded" : true,
-        "isLocked" : false
-      },
-      [
-        "C0B86B07-163D-4D03-A05A-B46594C68868",
-        "Root",
-        "keyShift"
       ],
       {
         "isExpanded" : true,
