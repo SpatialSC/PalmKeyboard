@@ -25,6 +25,16 @@ struct ImmersiveView: View {
                 
                 keyboard.transform.translation.y += 0.03
                 handAnchor.name = "Keyboard Palm Anchor"
+                
+                let mesh = MeshResource.generateText("Do not Press", extrusionDepth: 0.005, font: .boldSystemFont(ofSize: 0.05))
+                
+                let model = ModelEntity(mesh: mesh)
+                model.model?.materials = [UnlitMaterial(color: .black)]
+                model.position.x = -mesh.bounds.center.x
+                model.position.y = -mesh.bounds.center.y
+                
+//                model.setParent(keyboard);
+                
             }
             
             if let finger = try? await Entity(named: "finger", in: realityKitContentBundle) {
