@@ -41,7 +41,9 @@ def Xform "Root"
         }
     }
 
-    def Xform "ParticleEmitter"
+    def Xform "ParticleEmitter" (
+        active = false
+    )
     {
         float3 xformOp:translate = (0, 0.07226229, 0)
         uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]

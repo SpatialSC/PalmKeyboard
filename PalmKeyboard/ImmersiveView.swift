@@ -14,12 +14,14 @@ struct ImmersiveView: View {
     
     var textViewModel: TextViewModel
     @State var shiftPressed: Bool = false
+    @State var audioController: AudioPlaybackController? = nil
     
     let handAnchor = AnchorEntity(.hand(.left, location: .palm))
     let indexFingerAnchor = AnchorEntity(.hand(.right, location: .indexFingerTip))
     var body: some View {
         RealityView { content in
             
+            // create keyboard
             if let keyboard = try? await Entity(named: "keyboard", in: realityKitContentBundle) {
                 keyboard.setParent(handAnchor)
                 content.add(handAnchor)
@@ -29,9 +31,10 @@ struct ImmersiveView: View {
                 keyboard.transform.translation.y += 0.07
                 handAnchor.name = "Keyboard Palm Anchor"
                 
+                var audioEntityController: Entity? = nil
                 if let keyboardRoot = keyboard.findEntity(named: "Root")?.children[0] {
                     keyboardRoot.children.forEach{ child in
-                        if child.name != "Keyboard" {
+                        if child.name != "Keyboard" && child.name != "SpatialAudio" {
                             child.components.set(InputTargetComponent())
                             child.generateCollisionShapes(recursive: true)
                             if !child.children.isEmpty {
@@ -39,7 +42,10 @@ struct ImmersiveView: View {
                                     cChild.name = child.name
                                 }
                             }
-                            print(child)
+//                            print(child)
+                        }
+                        if child.name == "SpatialAudio" {
+                            audioEntityController = child
                         }
                     }
                 }
@@ -47,8 +53,21 @@ struct ImmersiveView: View {
                     print("Can't get root of keyboard")
                     return
                 }
+                
+                guard let audioEntityController = audioEntityController else {
+                    fatalError("Cannot find audio Entity Controller")
+                }
+                
+                let audioFile = "/Root/keyboardsound"
+                
+                guard let resource = try? await AudioFileResource(named: audioFile, from: "keyboard.usda", in: realityKitContentBundle) else {
+                    fatalError("Cannot load audio")
+                }
+                
+                audioController = audioEntityController.prepareAudio(resource);
             }
             
+            // create finger
             if let finger = try? await Entity(named: "finger", in: realityKitContentBundle) {
                 finger.setParent(indexFingerAnchor)
                 content.add(indexFingerAnchor)
@@ -60,22 +79,36 @@ struct ImmersiveView: View {
                 finger.scale *= 0.2
                 indexFingerAnchor.name = "Swiping Finger Anchor"
             }
+            textViewModel.placeholder = "After keyboard showed up on your left hand, use the keyboard to type something"
 
         }
-        .gesture(SpatialTapGesture().targetedToAnyEntity().onEnded({value in
-            let entity = value.entity
+        .gesture(SpatialTapGesture().targetedToAnyEntity()
+            .onChanged({value in
+                    print(value)
+            })
+            .onEnded({value in
             
-            let name = entity.name
-            var text: String = keyPressed(key: name)
+                let entity = value.entity
+                
+                let name = entity.name
+                var text: String = keyPressed(key: name)
+                
+                audioController?.play()
             
-            if !text.isEmpty {
-                if shiftPressed {
-                    text = text.capitalized
-                    shiftPressed = false
+//            entity.transform.translation.y -= 0.01
+//                print(entity)
+                
+            
+                if !text.isEmpty {
+                    if shiftPressed {
+                        text = text.capitalized
+                        shiftPressed = false
+                    }
+                    textViewModel.add(input: text)
                 }
-                textViewModel.add(input: text)
-            }
         }))
+        
+
     }
     
     func keyPressed(key: String) -> String {

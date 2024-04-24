@@ -69,7 +69,7 @@
       [
         "AF09ED6F-1707-48FD-8720-65B998362C09",
         "Root",
-        "Sphere_Left"
+        "Sphere_Right"
       ],
       {
         "isExpanded" : true,
@@ -78,7 +78,7 @@
       [
         "AF09ED6F-1707-48FD-8720-65B998362C09",
         "Root",
-        "Sphere_Right"
+        "Sphere_Left"
       ],
       {
         "isExpanded" : true,
@@ -90,11 +90,85 @@
     "objectMetadataList" : [
       [
         "C0B86B07-163D-4D03-A05A-B46594C68868",
+        "Root",
+        "return",
+        "Cube_032"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "C0B86B07-163D-4D03-A05A-B46594C68868",
+        "Root",
+        "keyQ"
+      ],
+      {
+        "isExpanded" : false,
+        "isLocked" : false,
+        "selectedAudioFilePrim" : {
+          "string" : "\/sound"
+        }
+      },
+      [
+        "C0B86B07-163D-4D03-A05A-B46594C68868",
+        "Root",
+        "keyReturn"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "C0B86B07-163D-4D03-A05A-B46594C68868",
+        "Root",
+        "return",
+        "Materials"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "C0B86B07-163D-4D03-A05A-B46594C68868",
+        "Root",
+        "return"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "C0B86B07-163D-4D03-A05A-B46594C68868",
         "Root"
       ],
       {
         "isExpanded" : true,
         "isLocked" : false
+      },
+      [
+        "C0B86B07-163D-4D03-A05A-B46594C68868",
+        "Root",
+        "keyShift"
+      ],
+      {
+        "isExpanded" : false,
+        "isLocked" : false,
+        "selectedAudioFilePrim" : {
+          "string" : "\/sound"
+        }
+      },
+      [
+        "C0B86B07-163D-4D03-A05A-B46594C68868",
+        "Root",
+        "SpatialAudio"
+      ],
+      {
+        "isExpanded" : false,
+        "isLocked" : false,
+        "selectedAudioFilePrim" : {
+          "string" : "\/Root\/keyboardsound"
+        }
       }
     ]
   },
@@ -150,6 +224,18 @@
     "objectMetadataList" : [
       [
         "DFD579E3-6622-4BA2-8FD8-7408146C7A13",
+        "Root"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      }
+    ]
+  },
+  "F349D882-05B2-45FA-BCB1-823E35EACA13" : {
+    "objectMetadataList" : [
+      [
+        "F349D882-05B2-45FA-BCB1-823E35EACA13",
         "Root"
       ],
       {

@@ -11,12 +11,14 @@ import Combine
 
 @Observable class TextViewModel {
     var text: String = ""
-    var placeholder: String = "use the keyboard to type something"
+    var placeholder: String = "Loading..."
     
     func add(input: String) {
         self.text += input
     }
     func delete() {
-        self.text.removeLast()
+        if !text.isEmpty {
+            self.text.removeLast()
+        }
     }
 }
